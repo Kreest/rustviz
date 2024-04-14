@@ -1,0 +1,23 @@
+[package]
+name = "rustviz"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+byteorder = "1.4.3"
+femtovg = { version = "0.7.0", features = ["glutin"] }
+glutin = "0.30.0"
+glutin-winit = "0.3.0"
+instant = "0.1.12"
+queues = "1.1.0"
+raw-window-handle = "0.5.0"
+resource = "0.5.0"
+ringbuf = "0.3.3"
+rustfft = "6.1.0"
+strum = "0.25.0"
+strum_macros = "0.25.0"
+winit = "0.28.6"
+apodize="1.0.0"
+spectrum-analyzer="1.5.0"
