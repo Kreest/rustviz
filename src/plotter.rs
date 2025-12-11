@@ -1,6 +1,4 @@
 use femtovg::Path;
-use rustfft::num_traits::Float;
-use std::sync::Arc;
 use spectrum_analyzer::{samples_fft_to_spectrum, FrequencyLimit};
 use spectrum_analyzer::windows::hann_window;
 use spectrum_analyzer::scaling::divide_by_N_sqrt;
@@ -35,14 +33,13 @@ pub fn plot_wave<S: Iterator<Item = i16>>(
 
 pub fn plot_freq_spectrum<S: Iterator<Item = i16>>(
     rendered_samples: S,
-    fft: &Arc<dyn rustfft::Fft<f64>>,
     canvas_width: f32,
     canvas_height: f32,
 ) -> Path {
     let mut p1 = Path::new();
-    let mut channel_one_samples = rendered_samples
+    let channel_one_samples = rendered_samples
         .step_by(2)
-        .map(|x| (x as f32).into())
+        .map(|x| x.into())
         .collect::<Vec<_>>();
     if channel_one_samples.len() < 22050 {
         return p1;
@@ -64,7 +61,7 @@ pub fn plot_freq_spectrum<S: Iterator<Item = i16>>(
     let p1_start = canvas_height / 2.0;
     p1.move_to(0.0, p1_start);
     for (i, sample) in spectrum_hann_window.data().iter() {
-        p1.line_to(i.val() * canvas_width / spectrum_hann_window.data().len() as f32, -sample.val() / 2000.  as f32 + p1_start);
+        p1.line_to(i.val() * canvas_width / spectrum_hann_window.data().len() as f32, -sample.val() / 2000. + p1_start);
     }
 
     p1

@@ -21,7 +21,7 @@ pub fn start(
     resizeable: bool,
 ) {
 
-    let event_loop = EventLoop::new();
+    let event_loop = EventLoop::new().unwrap();
 
     let (canvas, window, context, surface) = {
         let window_builder = WindowBuilder::new()
