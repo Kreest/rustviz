@@ -33,7 +33,7 @@ enum PlotTypes {
 }
 
 fn main() {
-    window_helper::start(1000, 670, false);
+    window_helper::start(1000, 670, true);
 }
 
 fn run(

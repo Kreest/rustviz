@@ -12,7 +12,7 @@ use glutin::{
 };
 use glutin_winit::DisplayBuilder;
 use raw_window_handle::HasRawWindowHandle;
-use winit::{event_loop::EventLoop, window::WindowBuilder};
+use winit::{event_loop::EventLoop, platform::wayland::WindowBuilderExtWayland, window::WindowBuilder};
 
 
 pub fn start(
@@ -27,7 +27,8 @@ pub fn start(
         let window_builder = WindowBuilder::new()
             .with_inner_size(winit::dpi::PhysicalSize::new(width, height))
             .with_resizable(resizeable)
-            .with_decorations(false)
+            .with_title("rustviz")
+            .with_name("rustviz", "rustviz")
             .with_transparent(true);
 
         let template = ConfigTemplateBuilder::new().with_alpha_size(8);
